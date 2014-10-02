@@ -10,8 +10,11 @@ app.controller('routeParameterExample', function($scope, $routeParams){
 
 
 app.config(function($routeProvider, $locationProvider){
+	
+
 	$routeProvider
-		.when('/routeparam/:first/:second', {
+		.when('/routeparam/:first/:second', 
+		{
 			templateUrl: 'view.html',
 			controller: 'routeParameterExample'
 		})
@@ -21,10 +24,26 @@ app.config(function($routeProvider, $locationProvider){
 				console.log( routeParams);
 				console.log('Path: ' + path);
 				console.log( search);
+				/*if route was set up then we could 
+				*show a page based of the parameter 
+				*passed through the route (as shown below).
+				*/
 				return '/'+routeParams.argument;
 			}
+		})
+		.otherwise(
+		{
+			redirectTo: '/'
 		});
-	$locationProvider.html5Mode(true);
+
+		
+	;
+
+	//uncomment below code to get rid of Hashbang URL
+	//$locationProvider.html5Mode(true);	
+
+	
+	
 
 
 });
